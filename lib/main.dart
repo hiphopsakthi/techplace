@@ -4,12 +4,14 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:techplace/screens/authentication/loginscreen.dart';
 import 'package:techplace/screens/mainscreen.dart';
-String ?mail;
-void main()async {
+
+String? mail;
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIOverlays([]);
-  final SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
-  mail=await sharedPreferences.getString('email');
+  final SharedPreferences sharedPreferences =
+      await SharedPreferences.getInstance();
+  mail = await sharedPreferences.getString('email');
   print(mail);
   runApp(const Myapp());
 }
@@ -20,15 +22,15 @@ class Myapp extends StatefulWidget {
   @override
   State<Myapp> createState() => _MyappState();
 }
+
 class _MyappState extends State<Myapp> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    print(mail);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'TechPlace',
@@ -36,12 +38,15 @@ class _MyappState extends State<Myapp> {
         backgroundColor: Colors.grey[100],
         primarySwatch: Colors.green,
       ),
-      home:AnimatedSplashScreen(
-        splash:Container(
+      home: AnimatedSplashScreen(
+        splash: Container(
             width: 150,
             height: 500,
-            child: Image.asset('assets/intro.png',fit: BoxFit.fitWidth,)),
-        nextScreen:mail==null?LoginScreen():MainScreen(),
+            child: Image.asset(
+              'assets/intro.png',
+              fit: BoxFit.fitWidth,
+            )),
+        nextScreen: mail == null ? const LoginScreen() : const MainScreen(),
       ),
     );
   }
