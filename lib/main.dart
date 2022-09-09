@@ -39,7 +39,7 @@ class _MyappState extends State<Myapp> {
         primarySwatch: Colors.green,
       ),
       home: AnimatedSplashScreen(
-        splash: Container(
+        splash: SizedBox(
             width: 150,
             height: 500,
             child: Image.asset(
